@@ -1,1 +1,293 @@
-<h1>Hello roy</h1>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI简约界面</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2b5876);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            border-radius: 50%;
+            font-size: 28px;
+        }
+        
+        h1 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to right, #00b4db, #0083b0);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .voice-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .voice-control:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .voice-icon {
+            font-size: 20px;
+            color: #00b4db;
+        }
+        
+        .voice-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .response-area {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            min-height: 100px;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        .response-placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 20px;
+        }
+        
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .typing-animation {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #00b4db;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+        
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 20px;
+            }
+            
+            .logo {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <h1>智能AI助手</h1>
+            <p class="subtitle">简洁 · 高效 · 智能</p>
+        </header>
+        
+        <div class="input-group">
+            <input type="text" placeholder="请输入您的问题或指令...">
+        </div>
+        
+        <button class="btn">生成回答</button>
+        
+        <div class="voice-control">
+            <div class="voice-icon">
+                <i class="fas fa-microphone"></i>
+            </div>
+            <div class="voice-text">语音输入</div>
+        </div>
+        
+        <div class="response-area">
+            <div class="response-placeholder">
+                <p>AI回答将显示在这里</p>
+                <div class="typing-animation">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const input = document.querySelector('input');
+            const btn = document.querySelector('.btn');
+            const voiceControl = document.querySelector('.voice-control');
+            const responseArea = document.querySelector('.response-area');
+            const placeholder = document.querySelector('.response-placeholder');
+            
+            // 示例回答
+            const sampleResponses = [
+                "感谢您的提问。基于当前信息，我建议您考虑以下几个方面：首先，明确您的核心需求；其次，分析可用资源；最后，制定分步实施方案。",
+                "根据我的分析，这个问题可以从多个角度来解答。从技术层面看，需要考虑系统兼容性和性能优化。从用户体验角度，则需要关注界面简洁性和操作流畅度。",
+                "这是一个很有深度的问题。从历史数据来看，类似情况的最佳解决方案通常包含三个关键要素：创新思维、有效执行和持续优化。"
+            ];
+            
+            // 按钮点击事件
+            btn.addEventListener('click', function() {
+                if (input.value.trim() === '') {
+                    input.focus();
+                    return;
+                }
+                
+                // 显示加载状态
+                placeholder.innerHTML = '<p>AI思考中...</p><div class="typing-animation"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+                
+                // 模拟AI思考时间
+                setTimeout(() => {
+                    const randomResponse = sampleResponses[Math.floor(Math.random() * sampleResponses.length)];
+                    placeholder.style.display = 'none';
+                    responseArea.innerHTML = `<p>${randomResponse}</p>`;
+                }, 2000);
+            });
+            
+            // 语音控制点击事件
+            voiceControl.addEventListener('click', function() {
+                const voiceText = this.querySelector('.voice-text');
+                const voiceIcon = this.querySelector('.voice-icon');
+                
+                voiceText.textContent = '聆听中...';
+                voiceIcon.innerHTML = '<i class="fas fa-circle" style="color:#ff4d4d"></i>';
+                
+                // 模拟语音识别时间
+                setTimeout(() => {
+                    input.value = "请展示一下你的创意能力";
+                    voiceText.textContent = '语音输入';
+                    voiceIcon.innerHTML = '<i class="fas fa-microphone"></i>';
+                }, 3000);
+            });
+            
+            // 按回车键触发按钮点击
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    btn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
