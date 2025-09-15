@@ -3,288 +3,610 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI简约界面</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>CodeForum - 开发者社区</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2d3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #1a2530;
+            --text: #333;
+            --text-light: #f9f9f9;
+            --card-bg: #fff;
+            --border: #ddd;
         }
         
         body {
-            background: linear-gradient(135deg, #1a2a6c, #2b5876);
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 500px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .logo {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #00b4db, #0083b0);
-            border-radius: 50%;
-            font-size: 28px;
-        }
-        
-        h1 {
-            font-size: 24px;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 14px;
-        }
-        
-        .input-group {
-            margin-bottom: 20px;
-        }
-        
-        input {
-            width: 100%;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.15);
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-        
-        input:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.25);
-        }
-        
-        input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
-        }
-        
-        .btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(to right, #00b4db, #0083b0);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-bottom: 20px;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .voice-control {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .voice-control:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .voice-icon {
-            font-size: 20px;
-            color: #00b4db;
-        }
-        
-        .voice-text {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .response-area {
-            margin-top: 30px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            min-height: 100px;
-            font-size: 15px;
+            background-color: #f5f7f9;
+            color: var(--text);
             line-height: 1.6;
         }
         
-        .response-placeholder {
-            color: rgba(255, 255, 255, 0.6);
-            text-align: center;
-            padding: 20px;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
-        footer {
-            margin-top: 30px;
-            text-align: center;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.6);
+        /* 导航栏样式 */
+        header {
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
-        .typing-animation {
+        nav {
             display: flex;
-            justify-content: center;
-            gap: 5px;
-            margin-top: 10px;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        .dot {
-            width: 8px;
-            height: 8px;
-            background: #00b4db;
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: pulse 1.5s infinite ease-in-out;
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
         }
         
-        .dot:nth-child(2) { animation-delay: 0.2s; }
-        .dot:nth-child(3) { animation-delay: 0.4s; }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.2); opacity: 1; }
+        .logo i {
+            margin-right: 10px;
+            color: var(--secondary);
         }
         
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 25px;
+        }
+        
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--dark);
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+        
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            outline: none;
+            width: 200px;
+        }
+        
+        .search-box button {
+            background: transparent;
+            border: none;
+            color: var(--secondary);
+            cursor: pointer;
+        }
+        
+        .user-actions a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        
+        /* 主要内容区 */
+        .main-content {
+            display: flex;
+            margin: 30px 0;
+            gap: 20px;
+        }
+        
+        .posts-container {
+            flex: 2;
+        }
+        
+        .sidebar {
+            flex: 1;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            color: var(--primary);
+        }
+        
+        /* 帖子卡片样式 */
+        .post-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .post-title {
+            font-size: 1.2rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .post-meta {
+            display: flex;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .post-meta span {
+            margin-right: 15px;
+        }
+        
+        .post-content {
+            margin-bottom: 15px;
+        }
+        
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: #e1f0fa;
+            color: var(--secondary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .post-actions button {
+            background: transparent;
+            border: none;
+            color: #777;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        
+        .post-actions button i {
+            margin-right: 5px;
+        }
+        
+        .post-actions button:hover {
+            color: var(--secondary);
+        }
+        
+        /* 侧边栏样式 */
+        .sidebar-widget {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .widget-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .categories-list {
+            list-style: none;
+        }
+        
+        .categories-list li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .categories-list a {
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .categories-list a:hover {
+            color: var(--secondary);
+        }
+        
+        .categories-list .count {
+            background: var(--light);
+            color: var(--primary);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .hot-topics li {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .hot-topics .rank {
+            font-weight: bold;
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+        
+        .btn-new-post {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        
+        .btn-new-post:hover {
+            background: #2980b9;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background: var(--dark);
+            color: var(--text-light);
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2c3e50;
+            margin-top: 20px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
             }
             
-            h1 {
-                font-size: 20px;
+            .nav-links {
+                display: none;
             }
             
-            .logo {
-                width: 60px;
-                height: 60px;
-                font-size: 24px;
+            .search-box {
+                width: 100%;
+                margin: 15px 0;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <i class="fas fa-brain"></i>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-code"></i>
+                    <span>CodeForum</span>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">板块</a></li>
+                    <li><a href="#">热门</a></li>
+                    <li><a href="#">精华</a></li>
+                    <li><a href="#">问答</a></li>
+                </ul>
+                
+                <div class="search-box">
+                    <input type="text" placeholder="搜索帖子或问题...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="#">登录</a>
+                    <a href="#">注册</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 主要内容区 -->
+    <div class="container main-content">
+        <!-- 帖子列表 -->
+        <div class="posts-container">
+            <h2 class="section-title">最新帖子</h2>
+            
+            <!-- 帖子卡片 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <a href="#" class="post-title">如何使用React Hooks优化组件性能？</a>
+                    <div class="post-meta">
+                        <span><i class="far fa-eye"></i> 245</span>
+                        <span><i class="far fa-comment"></i> 36</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>最近在重构项目时发现有些组件存在性能问题，尝试使用useMemo和useCallback进行优化，效果显著。以下是具体实现方法...</p>
+                </div>
+                <div class="post-tags">
+                    <span class="tag">React</span>
+                    <span class="tag">Hooks</span>
+                    <span class="tag">性能优化</span>
+                </div>
+                <div class="post-actions">
+                    <div>
+                        <button><i class="far fa-thumbs-up"></i> 赞</button>
+                        <button><i class="far fa-bookmark"></i> 收藏</button>
+                        <button><i class="fas fa-share"></i> 分享</button>
+                    </div>
+                    <div>
+                        <span>作者: DevUser123 • 2小时前</span>
+                    </div>
+                </div>
             </div>
-            <h1>智能AI助手</h1>
-            <p class="subtitle">简洁 · 高效 · 智能</p>
-        </header>
-        
-        <div class="input-group">
-            <input type="text" placeholder="请输入您的问题或指令...">
+            
+            <!-- 第二个帖子 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <a href="#" class="post-title">Python异步编程asyncio深入解析</a>
+                    <div class="post-meta">
+                        <span><i class="far fa-eye"></i> 189</span>
+                        <span><i class="far fa-comment"></i> 24</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>asyncio是Python中实现异步编程的重要模块，本文将深入探讨其事件循环、协程和任务调度机制，并通过实例演示如何编写高效的异步代码...</p>
+                </div>
+                <div class="post-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">异步编程</span>
+                    <span class="tag">asyncio</span>
+                </div>
+                <div class="post-actions">
+                    <div>
+                        <button><i class="far fa-thumbs-up"></i> 赞</button>
+                        <button><i class="far fa-bookmark"></i> 收藏</button>
+                        <button><i class="fas fa-share"></i> 分享</button>
+                    </div>
+                    <div>
+                        <span>作者: PyMaster • 5小时前</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第三个帖子 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <a href="#" class="post-title">CSS Grid布局实战：创建响应式仪表盘</a>
+                    <div class="post-meta">
+                        <span><i class="far fa-eye"></i> 324</span>
+                        <span><i class="far fa-comment"></i> 41</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>CSS Grid布局为Web开发带来了全新的布局方式。本文将展示如何使用Grid创建一个功能完整、响应式的管理仪表盘界面，并分享一些实用技巧...</p>
+                </div>
+                <div class="post-tags">
+                    <span class="tag">CSS</span>
+                    <span class="tag">Grid</span>
+                    <span class="tag">前端</span>
+                    <span class="tag">响应式设计</span>
+                </div>
+                <div class="post-actions">
+                    <div>
+                        <button><i class="far fa-thumbs-up"></i> 赞</button>
+                        <button><i class="far fa-bookmark"></i> 收藏</button>
+                        <button><i class="fas fa-share"></i> 分享</button>
+                    </div>
+                    <div>
+                        <span>作者: FrontEndPro • 昨天</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 第四个帖子 -->
+            <div class="post-card">
+                <div class="post-header">
+                    <a href="#" class="post-title">Docker容器化部署Node.js应用最佳实践</a>
+                    <div class="post-meta">
+                        <span><i class="far fa-eye"></i> 278</span>
+                        <span><i class="far fa-comment"></i> 32</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>本文将介绍如何使用Docker容器化Node.js应用，包括多阶段构建减小镜像体积、环境变量配置、日志处理以及容器编排的基本概念...</p>
+                </div>
+                <div class="post-tags">
+                    <span class="tag">Docker</span>
+                    <span class="tag">Node.js</span>
+                    <span class="tag">DevOps</span>
+                </div>
+                <div class="post-actions">
+                    <div>
+                        <button><i class="far fa-thumbs-up"></i> 赞</button>
+                        <button><i class="far fa-bookmark"></i> 收藏</button>
+                        <button><i class="fas fa-share"></i> 分享</button>
+                    </div>
+                    <div>
+                        <span>作者: DevOpsGuru • 2天前</span>
+                    </div>
+                </div>
+            </div>
         </div>
         
-        <button class="btn">生成回答</button>
-        
-        <div class="voice-control">
-            <div class="voice-icon">
-                <i class="fas fa-microphone"></i>
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <a href="#" class="btn-new-post"><i class="fas fa-plus"></i> 发表新帖</a>
+            
+            <div class="sidebar-widget">
+                <h3 class="widget-title">热门板块</h3>
+                <ul class="categories-list">
+                    <li><a href="#">前端开发 <span class="count">1.2k</span></a></li>
+                    <li><a href="#">后端开发 <span class="count">982</span></a></li>
+                    <li><a href="#">移动开发 <span class="count">654</span></a></li>
+                    <li><a href="#">数据库 <span class="count">523</span></a></li>
+                    <li><a href="#">DevOps <span class="count">487</span></a></li>
+                    <li><a href="#">人工智能 <span class="count">421</span></a></li>
+                </ul>
             </div>
-            <div class="voice-text">语音输入</div>
-        </div>
-        
-        <div class="response-area">
-            <div class="response-placeholder">
-                <p>AI回答将显示在这里</p>
-                <div class="typing-animation">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
+            
+            <div class="sidebar-widget">
+                <h3 class="widget-title">热门话题</h3>
+                <ul class="hot-topics">
+                    <li><span class="rank">1</span> <a href="#">React 18新特性解析</a></li>
+                    <li><span class="rank">2</span> <a href="#">TypeScript高级类型技巧</a></li>
+                    <li><span class="rank">3</span> <a href="#">微服务架构设计模式</a></li>
+                    <li><span class="rank">4</span> <a href="#">Web性能优化实践</a></li>
+                    <li><span class="rank">5</span> <a href="#">云原生应用开发</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-widget">
+                <h3 class="widget-title">社区数据</h3>
+                <div style="display: flex; justify-content: space-around; text-align: center;">
+                    <div>
+                        <div style="font-size: 1.8rem; font-weight: bold; color: var(--secondary);">12,589</div>
+                        <div>会员</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.8rem; font-weight: bold; color: var(--secondary);">5,762</div>
+                        <div>主题</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.8rem; font-weight: bold; color: var(--secondary);">23,941</div>
+                        <div>回帖</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <p>CodeForum是一个面向开发者的技术社区，致力于分享编程知识、经验和解决方案。</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">板块</a></li>
+                        <li><a href="#">排行榜</a></li>
+                        <li><a href="#">帮助中心</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">反馈建议</a></li>
+                        <li><a href="#">广告合作</a></li>
+                        <li><a href="#">招聘信息</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 CodeForum 开发者社区. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const input = document.querySelector('input');
-            const btn = document.querySelector('.btn');
-            const voiceControl = document.querySelector('.voice-control');
-            const responseArea = document.querySelector('.response-area');
-            const placeholder = document.querySelector('.response-placeholder');
-            
-            // 示例回答
-            const sampleResponses = [
-                "感谢您的提问。基于当前信息，我建议您考虑以下几个方面：首先，明确您的核心需求；其次，分析可用资源；最后，制定分步实施方案。",
-                "根据我的分析，这个问题可以从多个角度来解答。从技术层面看，需要考虑系统兼容性和性能优化。从用户体验角度，则需要关注界面简洁性和操作流畅度。",
-                "这是一个很有深度的问题。从历史数据来看，类似情况的最佳解决方案通常包含三个关键要素：创新思维、有效执行和持续优化。"
-            ];
-            
-            // 按钮点击事件
-            btn.addEventListener('click', function() {
-                if (input.value.trim() === '') {
-                    input.focus();
-                    return;
-                }
-                
-                // 显示加载状态
-                placeholder.innerHTML = '<p>AI思考中...</p><div class="typing-animation"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
-                
-                // 模拟AI思考时间
-                setTimeout(() => {
-                    const randomResponse = sampleResponses[Math.floor(Math.random() * sampleResponses.length)];
-                    placeholder.style.display = 'none';
-                    responseArea.innerHTML = `<p>${randomResponse}</p>`;
-                }, 2000);
-            });
-            
-            // 语音控制点击事件
-            voiceControl.addEventListener('click', function() {
-                const voiceText = this.querySelector('.voice-text');
-                const voiceIcon = this.querySelector('.voice-icon');
-                
-                voiceText.textContent = '聆听中...';
-                voiceIcon.innerHTML = '<i class="fas fa-circle" style="color:#ff4d4d"></i>';
-                
-                // 模拟语音识别时间
-                setTimeout(() => {
-                    input.value = "请展示一下你的创意能力";
-                    voiceText.textContent = '语音输入';
-                    voiceIcon.innerHTML = '<i class="fas fa-microphone"></i>';
-                }, 3000);
-            });
-            
-            // 按回车键触发按钮点击
-            input.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    btn.click();
+        // 简单的点赞功能示例
+        document.querySelectorAll('.post-actions button').forEach(button => {
+            button.addEventListener('click', function() {
+                if(this.querySelector('i').classList.contains('fa-thumbs-up')) {
+                    this.classList.toggle('liked');
+                    if(this.classList.contains('liked')) {
+                        this.innerHTML = '<i class="fas fa-thumbs-up"></i> 已赞';
+                        this.style.color = '#3498db';
+                    } else {
+                        this.innerHTML = '<i class="far fa-thumbs-up"></i> 赞';
+                        this.style.color = '';
+                    }
                 }
             });
         });
